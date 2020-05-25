@@ -1,0 +1,275 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  background: #000;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-green {
+  color: #08d870;
+}
+
+.text-red {
+  color: #d8083c;
+}
+
+.SetupScreen {
+  background: black;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SetupScreen__content {
+  width: clamp(0px, 65%, 780px);
+  margin: 0 auto;
+  padding: 64px;
+}
+
+.SetupScreen__header {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(0px, 2vw, 24px);
+  font-weight: normal;
+  user-select: none;
+}
+
+.SetupScreen__text {
+  color: #fff;
+  font-size: clamp(0px, 4vw, 48px);
+  font-weight: bold;
+  user-select: none;
+}
+.SetupScreen__text--small {
+  margin-top: clamp(0px, 2vw, 24px);
+  font-size: clamp(0px, 2vw, 24px);
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.8);
+}
+.SetupScreen__text a {
+  color: #fff;
+}
+
+.SetupScreen__goalInput {
+  display: inline-block;
+  font: inherit;
+  text-align: center;
+  color: #08d870;
+  background: none;
+
+  width: 0px;
+  min-width: clamp(0px, 6vw, 72px);
+  max-width: 100%;
+  padding: clamp(0px, 1vw, 12px) 0;
+
+  border: none;
+  border-bottom: 4px solid rgba(3, 184, 93, 0.3);
+}
+.SetupScreen__goalInput:focus {
+  border-bottom-color: rgba(3, 184, 93, 1);
+  outline: none;
+}
+
+.SetupScreen__buttonContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-top: clamp(0px, 2vw, 24px);
+}
+.SetupScreen__button {
+  border: none;
+  border-radius: clamp(0px, 0.6vw, 8px);
+  font-size: clamp(0px, 2vw, 24px);
+  font-weight: bold;
+  padding: clamp(0px, 1.5vw, 18px) clamp(0px, 4vw, 48px);
+  cursor: pointer;
+  margin-top: clamp(0px, 2vw, 24px);
+}
+.SetupScreen__button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+.SetupScreen__button--continue {
+  background: #fff;
+  color: #000;
+}
+.SetupScreen__button--back {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.SetupScreen__button--back:hover,
+.SetupScreen__button--back:focus {
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+.DaysSelector {
+  display: flex;
+  margin-top: clamp(0px, 2vw, 24px);
+}
+.DaysSelector__day {
+  background: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  width: clamp(0px, 6vw, 72px);
+  height: clamp(0px, 6vw, 72px);
+  margin-right: clamp(0px, 1vw, 12px);
+  cursor: pointer;
+}
+.DaysSelector__day--on {
+  /* background: #03b85d;
+  box-shadow: 0 3px 8px #08d87066; */
+  background: #fff;
+  color: #000;
+}
+.DaysSelector__day:focus-within {
+  outline: auto;
+}
+.DaysSelector__checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.DaysSelector__dayText {
+  text-transform: uppercase;
+  font-size: clamp(0px, 3vw, 36px);
+}
+
+.SetupScreen__textarea {
+  width: 100%;
+  font: inherit;
+  font-size: clamp(0px, 3vw, 36px);
+  background: #000;
+  border: none;
+  margin-top: clamp(0px, 2vw, 24px);
+  resize: none;
+}
+.SetupScreen__textarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.MainScreen {
+  background: black;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  animation: fadeIn 200ms ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.MainScreen--done {
+  background: #03b85d;
+}
+
+.MainScreen__content {
+  width: clamp(0px, 65%, 780px);
+  margin: 0 auto;
+  padding: 64px;
+}
+
+.MainScreen__header {
+  color: #fff;
+  font-size: clamp(0px, 6vw, 72px);
+  user-select: none;
+  margin: 0;
+  margin-bottom: 64px;
+}
+
+.MainScreen__completedBtn {
+  background: #03b85d;
+  box-shadow: 0 3px 8px #08d87066;
+  border: none;
+  border-radius: clamp(0px, 0.6vw, 8px);
+  font-size: clamp(0px, 3vw, 36px);
+  color: #fff;
+  font-weight: bold;
+  padding: clamp(0px, 2vw, 24px) clamp(0px, 6vw, 72px);
+  cursor: pointer;
+  outline: none;
+}
+
+.MainScreen__undoCompletedBtn {
+  background: transparent;
+  color: #fffd;
+  font-size: clamp(0px, 2vw, 24px);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.MainScreen__resetButton {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: clamp(0px, 1.5vw, 18px);
+  border: none;
+  border-radius: clamp(0px, 0.6vw, 8px);
+  padding: clamp(0px, 2vw, 24px) clamp(0px, 4vw, 48px);
+
+  cursor: pointer;
+}
+
+.MainScreen__streakContainer {
+  display: block;
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(0px, 4vw, 48px);
+  margin-bottom: clamp(-24px, -2vw, 0px);
+}
+.StreakBadge {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  margin: 0 auto;
+  margin-top: clamp(0px, 6vw, 72px);
+  padding: clamp(0px, 2vw, 24px) clamp(0px, 4vw, 48px);
+  font-size: clamp(0px, 1.5vw, 18px);
+  font-weight: 500;
+  border-radius: clamp(0px, 1vw, 12px);
+  user-select: none;
+}
+.StreakBadge > span {
+  font-weight: bold;
+}
+.StreakBadge--good {
+  background: rgba(3, 184, 93, 0.1);
+  color: #08d870;
+}
+.StreakBadge--good > span {
+  color: #53f0a1;
+}
+.StreakBadge--bad {
+  background: rgba(179, 2, 46, 0.15);
+  color: #d8083c;
+}
+.StreakBadge--bad > span {
+  color: #f5416e;
+}
