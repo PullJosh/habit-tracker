@@ -18,8 +18,9 @@ In the future, it will also...
 
 There are two kinds of goals. The habit tracker only helps with the first:
 
-[x] Goals to _do_ something (ex. go for a run)
-[ ] Goals to _NOT do_ something (ex. eat sugary foods)
+✔ Goals to _do_ something (ex. go for a run)
+
+❌ Goals to _NOT do_ something (ex. eat sugary foods)
 
 # Installation
 
