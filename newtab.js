@@ -118,6 +118,7 @@ function MainScreen() {
           html`Don't forget to${" "}
             <span class="text-green">${goal.task}</span> today!`}
           ${status === "done" && html`Good work. 🎉`}
+          ${status === "day-off" && html`Enjoy your day off. 👍`}
         </h1>
         ${status === "not-done" &&
         html`<button
