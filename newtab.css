@@ -286,29 +286,23 @@ body {
 }
 
 .SuccessScreen--visible .SuccessScreen__content--allowShakeAnimation {
-  animation: shake 300ms linear 400ms 1 forwards;
+  animation: shake 400ms ease-in-out 250ms 1 forwards;
 }
 
 @keyframes shake {
   0% {
     transform: none;
   }
-  10% {
-    transform: translateY(5%);
-  }
-  20% {
-    transform: translateY(-3%);
-  }
-  30% {
-    transform: translateY(2%);
-  }
   40% {
-    transform: translateY(-1%);
+    transform: translateY(-10%);
   }
-  50% {
-    transform: translateY(1%);
+  70% {
+    transform: translateY(6%);
   }
-  60% {
+  90% {
+    transform: translateY(-2%);
+  }
+  100% {
     transform: none;
   }
 }
