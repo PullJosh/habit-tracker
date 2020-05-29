@@ -285,8 +285,8 @@ body {
   cursor: pointer;
 }
 
-.SuccessScreen--visible .SuccessScreen__content--allowShakeAnimation {
-  animation: shake 400ms ease-in-out 250ms 1 forwards;
+.SuccessScreen--visible.SuccessScreen--allowAnimation .SuccessScreen__content {
+  animation: shake 400ms ease-in-out 300ms 1 forwards;
 }
 
 @keyframes shake {
@@ -304,6 +304,31 @@ body {
   }
   100% {
     transform: none;
+  }
+}
+
+.SuccessScreen__curve {
+  display: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  transform-origin: top center;
+}
+
+.SuccessScreen--visible.SuccessScreen--allowAnimation .SuccessScreen__curve {
+  display: block;
+  animation: flip 400ms cubic-bezier(1, -0.25, 0.55, 1.2) 1 forwards;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(90deg);
   }
 }
 
