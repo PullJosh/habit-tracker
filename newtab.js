@@ -169,7 +169,6 @@ function UserMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   let [goal, setGoal] = useChromeStorage("goal", null);
-  // goal = null;
   const [logs, setLogs] = useChromeStorage("logs", []);
 
   const goalIsComplete = !!(
