@@ -2,6 +2,7 @@ import { html } from "../htm-preact.js";
 import { useChromeStorage, useForceRerender } from "../hooks.js";
 
 import { StreakBadge } from "./StreakBadge.js";
+import { SuccessScreen } from "./SuccessScreen.js";
 
 export function MainScreen() {
   const [goal, setGoal, goalStatus] = useChromeStorage("goal", {});
@@ -85,34 +86,34 @@ export function MainScreen() {
     <div class=${`MainScreen MainScreen--${status}`}>
       <div class="MainScreen__content">
         <h1 class="MainScreen__header">
-          ${status === "not-done" &&
+          ${status === "day-off" && html`Enjoy your day off. 👍`}
+          ${status !== "day-off" &&
           html`Don't forget to${" "}
             <span class="text-green">${goal.task}</span> today!`}
-          ${status === "done" && html`Good work. 🎉`}
-          ${status === "day-off" && html`Enjoy your day off. 👍`}
         </h1>
-        ${status === "not-done" &&
+        ${status !== "day-off" &&
         html`<button
-            class="MainScreen__completedBtn"
-            onClick=${() => {
-              setLogs([...logs, { date: new Date().getTime() }]);
-            }}
-          >
-            I did it!
-          </button>
+          class="MainScreen__completedBtn"
+          onClick=${() => {
+            setLogs([...logs, { date: new Date().getTime() }]);
+          }}
+          disabled=${status !== "not-done"}
+        >
+          I did it!
+        </button>`}
+        ${status !== "day-off" &&
+        html`
           <div class="MainScreen__streakContainer">
             <${StreakBadge} type=${streak.type} days=${streak.days} />
-          </div>`}
-        ${status === "done" &&
-        html`<button
-          class="MainScreen__undoCompletedBtn"
-          onClick=${() => {
-            setLogs(logs.filter((log) => !sameDay(today, new Date(log.date))));
-          }}
-        >
-          ← Undo
-        </button>`}
+          </div>
+        `}
       </div>
     </div>
+    <${SuccessScreen}
+      succeeded=${status === "done"}
+      undo=${() => {
+        setLogs(logs.filter((log) => !sameDay(today, new Date(log.date))));
+      }}
+    />
   `;
 }
