@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Staatliches";
+  src: url("Staatliches-Regular.ttf") format("truetype");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -172,9 +177,13 @@ body {
 }
 
 .MainScreen__content {
+  position: relative;
+  z-index: 10;
   width: clamp(0px, 65%, 780px);
   margin: 0 auto;
   padding: 64px;
+  border-radius: clamp(0px, 2vw, 24px);
+  backdrop-filter: blur(16px);
 }
 
 .MainScreen__header {
@@ -213,47 +222,106 @@ body {
   cursor: pointer;
 }
 
-.MainScreen__streakContainer {
-  display: block;
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(0px, 4vw, 48px);
-  margin-bottom: clamp(-24px, -2vw, 0px);
-}
-.StreakBadge {
+.StreakBanner {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
   text-align: center;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  margin: 0 auto;
-  margin-top: clamp(0px, 6vw, 72px);
-  padding: clamp(0px, 2vw, 24px) clamp(0px, 4vw, 48px);
-  font-size: clamp(0px, 1.5vw, 18px);
+  padding: clamp(0px, 3vw, 36px) clamp(0px, 4vw, 48px);
+  font-size: clamp(14px, 1.5vw, 18px);
   font-weight: 500;
-  border-radius: clamp(0px, 1vw, 12px);
   user-select: none;
 }
-.StreakBadge > span {
+.StreakBanner__days {
   font-weight: bold;
 }
-.StreakBadge--good {
+
+.StreakBanner--good {
   background: rgba(3, 184, 93, 0.1);
   color: #08d870;
 }
-.StreakBadge--good > span {
+.StreakBanner--good .StreakBanner__days {
   color: #53f0a1;
 }
-.StreakBadge--bad {
+
+.StreakBanner--bad {
   background: rgba(179, 2, 46, 0.15);
   color: #d8083c;
 }
-.StreakBadge--bad > span {
+.StreakBanner--bad .StreakBanner__days {
   color: #f5416e;
+}
+
+.StreakBanner--awful {
+  background: repeating-linear-gradient(
+    45deg,
+    #d8083c,
+    #d8083c 10px,
+    #c70838 10px,
+    #c70838 20px
+  );
+  color: #f5d4dd;
+
+  animation: moving-banner-stripes 500ms linear infinite;
+}
+.StreakBanner--awful .StreakBanner__days {
+  color: #fff;
+}
+.StreakBanner--awful .StreakBanner__text {
+  display: inline-block;
+  border-radius: 999px;
+  padding: clamp(0px, 0.5vw, 6px) clamp(0px, 1.5vw, 18px);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes moving-banner-stripes {
+  0% {
+    background-position-x: 0px;
+  }
+  100% {
+    background-position-x: 28px;
+  }
+}
+
+.StreakBanner--catastrophic {
+  top: 0;
+  background: #d8083c;
+  padding: 0;
+}
+
+.StreakBanner__marquee {
+  font-family: "Staatliches", sans-serif;
+  font-size: 25vh;
+  white-space: nowrap;
+  line-height: 0.7;
+  color: #ad0c2d;
+  text-transform: uppercase;
+  width: fit-content;
+  user-select: none;
+  cursor: default;
+
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .SuccessScreen {
   background: #03b85d;
   position: fixed;
   inset: 0;
+  z-index: 20;
   overflow: hidden;
 }
 .SuccessScreen__inner {

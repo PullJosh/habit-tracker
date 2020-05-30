@@ -1,7 +1,7 @@
 import { html } from "../htm-preact.js";
 import { useChromeStorage, useForceRerender } from "../hooks.js";
 
-import { StreakBadge } from "./StreakBadge.js";
+import { StreakBanner } from "./StreakBanner.js";
 import { SuccessScreen } from "./SuccessScreen.js";
 
 export function MainScreen() {
@@ -101,14 +101,10 @@ export function MainScreen() {
         >
           I did it!
         </button>`}
-        ${status !== "day-off" &&
-        html`
-          <div class="MainScreen__streakContainer">
-            <${StreakBadge} type=${streak.type} days=${streak.days} />
-          </div>
-        `}
       </div>
     </div>
+    ${status !== "day-off" &&
+    html`<${StreakBanner} type=${streak.type} days=${streak.days} />`}
     <${SuccessScreen}
       succeeded=${status === "done"}
       undo=${() => {
