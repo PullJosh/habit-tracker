@@ -236,6 +236,7 @@ body {
   font-weight: 500;
   user-select: none;
 }
+
 .StreakBanner__days {
   font-weight: bold;
 }
@@ -243,9 +244,27 @@ body {
 .StreakBanner--good {
   background: rgba(3, 184, 93, 0.1);
   color: #08d870;
+
+  /*
+    Fade in the banner. (But only when it's *good*!) This is a sort of
+    hacky way to prevent the banner from appearing right as you click
+    the "I did it!" button (but before the screen transition is
+    complete).
+  */
+  opacity: 0;
+  animation: fadeIn 500ms ease-in-out 300ms 1 forwards;
 }
 .StreakBanner--good .StreakBanner__days {
   color: #53f0a1;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .StreakBanner--bad {
