@@ -1,8 +1,9 @@
-import { html } from "../../htm-preact.js";
+import { html, useState, useRef } from "../../htm-preact.js";
 import { useChromeStorage, useForceRerender } from "../../hooks.js";
 
 import { StreakBanner } from "../StreakBanner/StreakBanner.js";
 import { SuccessScreen } from "../SuccessScreen/SuccessScreen.js";
+import { ClickAndHoldButton } from "../ClickAndHoldButton/ClickAndHoldButton.js";
 
 export function MainScreen() {
   const [goal, setGoal, goalStatus] = useChromeStorage("goal", {});
@@ -82,6 +83,18 @@ export function MainScreen() {
 
   const streak = getStreak(today);
 
+  const [showHoldNotice, setShowHoldNotice] = useState(false);
+  const holdNoticeHideTimeout = useRef();
+  const displayHoldNotice = () => {
+    clearTimeout(holdNoticeHideTimeout.current);
+
+    setShowHoldNotice(true);
+
+    holdNoticeHideTimeout.current = setTimeout(() => {
+      setShowHoldNotice(false);
+    }, 3000);
+  };
+
   return html`
     <div class=${`MainScreen MainScreen--${status}`}>
       <div class="MainScreen__content">
@@ -92,15 +105,27 @@ export function MainScreen() {
             <span class="text-green">${goal.task}</span> today!`}
         </h1>
         ${status !== "day-off" &&
-        html`<button
-          class="MainScreen__completedBtn"
-          onClick=${() => {
-            setLogs([...logs, { date: new Date().getTime() }]);
-          }}
-          disabled=${status !== "not-done"}
-        >
-          I did it!
-        </button>`}
+        html`<div class="MainScreen__buttonContainer">
+          <${ClickAndHoldButton}
+            className="MainScreen__completedBtn"
+            onClick=${() => {
+              setLogs([...logs, { date: new Date().getTime() }]);
+            }}
+            onReleaseEarly=${() => {
+              displayHoldNotice();
+            }}
+            disabled=${status !== "not-done"}
+          >
+            I did it!
+          <//>
+          <span
+            class=${`MainScreen__holdNotice MainScreen__holdNotice--${
+              showHoldNotice ? "visible" : "hidden"
+            }`}
+          >
+            Click and hold
+          </span>
+        </div>`}
       </div>
     </div>
     ${status !== "day-off" &&

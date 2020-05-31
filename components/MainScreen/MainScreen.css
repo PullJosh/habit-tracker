@@ -25,6 +25,10 @@
   margin-bottom: 64px;
 }
 
+.MainScreen__buttonContainer {
+  display: flex;
+  align-items: center;
+}
 .MainScreen__completedBtn {
   background: #03b85d;
   box-shadow: 0 3px 8px #08d87066;
@@ -36,6 +40,24 @@
   padding: clamp(0px, 2vw, 24px) clamp(0px, 6vw, 72px);
   cursor: pointer;
   outline: none;
+
+  z-index: 1;
+}
+.MainScreen__holdNotice {
+  color: #888;
+  margin-left: clamp(0px, 3vw, 36px);
+  font-size: clamp(0px, 2vw, 24px);
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-100%);
+
+  transition: 150ms ease-in-out;
+}
+.MainScreen__holdNotice--visible {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
 }
 
 .MainScreen__resetButton {
