@@ -1,0 +1,150 @@
+.GoalMenu {
+  position: fixed;
+  z-index: 30;
+  top: 16px;
+  left: 16px;
+}
+
+/* Toggle button */
+.GoalMenu__button {
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  border-radius: 9999px;
+  opacity: 0.3;
+
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  transition: opacity 100ms ease-in-out;
+}
+.GoalMenu__button:hover,
+.GoalMenu--open .GoalMenu__button {
+  opacity: 0.4;
+}
+
+/* Popup */
+.GoalMenu__popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  width: 240px;
+  background: #1b1b1c;
+  color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transform-origin: top left;
+
+  transition: all 100ms ease-in-out;
+}
+.GoalMenu--open .GoalMenu__popup {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.GoalMenu__goalDetails {
+  padding: 16px;
+}
+.GoalMenu__goalDetails > p:first-child {
+  margin-top: 0;
+}
+.GoalMenu__goalDetails > p:last-child {
+  margin-bottom: 0;
+}
+
+.GoalMenu__goalText {
+  color: #08d870;
+  font-weight: 500;
+}
+.GoalMenu__goalDays {
+  display: flex;
+  margin: 8px 0;
+}
+.GoalMenu__goalDay {
+  flex-grow: 1;
+  height: 28px;
+  font-weight: bold;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #58585f;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.GoalMenu__goalDay--active {
+  background: #444447;
+  color: #fff;
+  border-radius: 4px;
+}
+.GoalMenu__goalDay--prevActive {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.GoalMenu__goalDay--nextActive {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.GoalMenu__outcome {
+  text-align: center;
+  background: #242425;
+  border-radius: 3px;
+  padding: 6px 12px;
+}
+.GoalMenu__outcome--good {
+  background: rgba(3, 184, 93, 0.1);
+  color: #08d870;
+}
+.GoalMenu__outcome--bad {
+  background: rgba(179, 2, 46, 0.15);
+  color: #f31a51;
+}
+
+.GoalMenu__or {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  font-style: italic;
+  color: #4f4f52;
+}
+.GoalMenu__or::before,
+.GoalMenu__or::after {
+  content: " ";
+  display: block;
+  flex-grow: 1;
+  border-bottom: 1px solid #242425;
+}
+.GoalMenu__or::before {
+  margin-right: 8px;
+}
+.GoalMenu__or::after {
+  margin-left: 8px;
+}
+
+.GoalMenu__actionBar {
+  background: #242425;
+  padding: 16px;
+}
+.GoalMenu__resetButton {
+  display: block;
+  padding: 6px 8px;
+  width: 100%;
+
+  font-size: 14px;
+  font-weight: 600;
+  background: #d8083c;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+
+  cursor: pointer;
+}

@@ -3,7 +3,7 @@ import { useChromeStorage } from "../../hooks.js";
 
 import { GoalWizard } from "../GoalWizard/GoalWizard.js";
 import { MainScreen } from "../MainScreen/MainScreen.js";
-import { UserMenu } from "../UserMenu/UserMenu.js";
+import { GoalMenu } from "../GoalMenu/GoalMenu.js";
 
 export function App() {
   const [goal, setGoal] = useChromeStorage("goal", null);
@@ -31,6 +31,6 @@ export function App() {
       }}
     />`}
     ${goalIsComplete && !showingGoalWizard && html`<${MainScreen} />`}
-    <${UserMenu} />
+    <${GoalMenu} />
   `;
 }
