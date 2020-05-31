@@ -38,7 +38,7 @@ export function SuccessScreen({ succeeded, undo }) {
         }}
       >
         <div class="SuccessScreen__content">
-          <h1 class="SuccessScreen__header">Good work. 🎉</h1>
+          <h1 class="SuccessScreen__header">Good work! 🎉</h1>
           <button
             class="SuccessScreen__undoBtn"
             onClick=${() => {
