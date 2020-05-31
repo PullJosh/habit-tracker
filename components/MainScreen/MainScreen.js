@@ -1,8 +1,8 @@
-import { html } from "../htm-preact.js";
-import { useChromeStorage, useForceRerender } from "../hooks.js";
+import { html } from "../../htm-preact.js";
+import { useChromeStorage, useForceRerender } from "../../hooks.js";
 
-import { StreakBanner } from "./StreakBanner.js";
-import { SuccessScreen } from "./SuccessScreen.js";
+import { StreakBanner } from "../StreakBanner/StreakBanner.js";
+import { SuccessScreen } from "../SuccessScreen/SuccessScreen.js";
 
 export function MainScreen() {
   const [goal, setGoal, goalStatus] = useChromeStorage("goal", {});

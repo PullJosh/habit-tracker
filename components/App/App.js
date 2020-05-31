@@ -1,9 +1,9 @@
-import { html, useState, useEffect } from "../htm-preact.js";
-import { useChromeStorage } from "../hooks.js";
+import { html, useState, useEffect } from "../../htm-preact.js";
+import { useChromeStorage } from "../../hooks.js";
 
-import { GoalWizard } from "./GoalWizard.js";
-import { MainScreen } from "./MainScreen.js";
-import { UserMenu } from "./UserMenu.js";
+import { GoalWizard } from "../GoalWizard/GoalWizard.js";
+import { MainScreen } from "../MainScreen/MainScreen.js";
+import { UserMenu } from "../UserMenu/UserMenu.js";
 
 export function App() {
   const [goal, setGoal] = useChromeStorage("goal", null);

@@ -1,0 +1,114 @@
+.UserMenu {
+  position: fixed;
+  z-index: 30;
+  top: 16px;
+  left: 16px;
+}
+.UserMenu__button {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  border-radius: 9999px;
+  opacity: 0.3;
+
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  transition: opacity 100ms ease-in-out;
+}
+.UserMenu__button:hover,
+.UserMenu--open .UserMenu__button {
+  opacity: 0.4;
+}
+.UserMenu__popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  width: 240px;
+  background: #1b1b1c;
+  color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transform-origin: top left;
+
+  transition: all 100ms ease-in-out;
+}
+.UserMenu--open .UserMenu__popup {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.UserMenu__area {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+.UserMenu__area--goal {
+  background: #2c2c2e;
+}
+.UserMenu__menuButton {
+  display: block;
+  background: #2c2c2e;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.UserMenu__menuButton--signin {
+  cursor: not-allowed;
+}
+.UserMenu__menuButton--reset {
+  background: rgba(255, 0, 0, 0.15);
+  color: #ff5e5e;
+  margin-top: 16px;
+  padding: 6px 8px;
+  align-self: flex-end;
+  box-shadow: none;
+}
+
+.UserMenu__goalDescription {
+  margin-bottom: 8px;
+}
+.UserMenu__goalText {
+  color: #08d870;
+  font-weight: 500;
+}
+.UserMenu__goalDays {
+  display: flex;
+}
+.UserMenu__goalDay {
+  flex-grow: 1;
+  height: 28px;
+  font-weight: bold;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #58585f;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.UserMenu__goalDay--active {
+  background: #444447;
+  color: #fff;
+  border-radius: 4px;
+}
+.UserMenu__goalDay--prevActive {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.UserMenu__goalDay--nextActive {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

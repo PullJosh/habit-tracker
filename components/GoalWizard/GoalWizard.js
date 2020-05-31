@@ -1,8 +1,8 @@
-import { html, useState } from "../htm-preact.js";
-import { useChromeStorage } from "../hooks.js";
+import { html, useState } from "../../htm-preact.js";
+import { useChromeStorage } from "../../hooks.js";
 
-import { AutoResizeInput } from "./AutoResizeInput.js";
-import { DaysSelector } from "./DaysSelector.js";
+import { AutoResizeInput } from "../AutoResizeInput/AutoResizeInput.js";
+import { DaysSelector } from "../DaysSelector/DaysSelector.js";
 
 export function GoalWizard({ closeScreen }) {
   const [goal, setGoal] = useChromeStorage("goal", {});
@@ -22,16 +22,16 @@ export function GoalWizard({ closeScreen }) {
   }
 
   return html`
-    <div class="SetupScreen">
-      <div class="SetupScreen__content">
-        ${step === "task" && html`<${SetupScreenTask} />`}
-        ${step === "days" && html`<${SetupScreenDays} />`}
+    <div class="GoalWizard">
+      <div class="GoalWizard__content">
+        ${step === "task" && html`<${GoalWizardTask} />`}
+        ${step === "days" && html`<${GoalWizardDays} />`}
         ${step === "outcome_good" &&
-        html`<${SetupScreenOutcome} variant="good" />`}
+        html`<${GoalWizardOutcome} variant="good" />`}
         ${step === "outcome_bad" &&
-        html`<${SetupScreenOutcome} variant="bad" />`}
+        html`<${GoalWizardOutcome} variant="bad" />`}
         ${step === "share" &&
-        html`<${SetupScreenShare}
+        html`<${GoalWizardShare}
           goal=${goal}
           close=${() => {
             closeScreen();
@@ -42,23 +42,23 @@ export function GoalWizard({ closeScreen }) {
   `;
 }
 
-function SetupScreenTask() {
+function GoalWizardTask() {
   const [goal, setGoal] = useChromeStorage("goal", {});
   const [taskText, setTaskText] = useState("");
 
-  return html`<h1 class="SetupScreen__header">Step 1: Choose a goal.</h1>
-    <div class="SetupScreen__text">
+  return html`<h1 class="GoalWizard__header">Step 1: Choose a goal.</h1>
+    <div class="GoalWizard__text">
       My life would be better if I chose to${" "}
       <${AutoResizeInput}
-        class="SetupScreen__goalInput"
+        class="GoalWizard__goalInput"
         value=${taskText}
         setValue=${setTaskText}
         autofocus
       />${" "} every day.
     </div>
-    <div class="SetupScreen__buttonContainer">
+    <div class="GoalWizard__buttonContainer">
       <button
-        class="SetupScreen__button SetupScreen__button--continue"
+        class="GoalWizard__button GoalWizard__button--continue"
         onClick=${() => {
           setGoal({ ...goal, task: taskText });
         }}
@@ -69,18 +69,18 @@ function SetupScreenTask() {
     </div>`;
 }
 
-function SetupScreenDays() {
+function GoalWizardDays() {
   const [goal, setGoal] = useChromeStorage("goal", {});
   const [days, setDays] = useState(["mon", "tue", "wed", "thu", "fri"]);
 
-  return html`<h1 class="SetupScreen__header">Step 2: Set a schedule.</h1>
-    <div class="SetupScreen__text">
+  return html`<h1 class="GoalWizard__header">Step 2: Set a schedule.</h1>
+    <div class="GoalWizard__text">
       I will <span class="text-green">${goal.task}</span> on these days:
       <${DaysSelector} days=${days} setDays=${setDays} />
     </div>
-    <div class="SetupScreen__buttonContainer">
+    <div class="GoalWizard__buttonContainer">
       <button
-        class="SetupScreen__button SetupScreen__button--continue"
+        class="GoalWizard__button GoalWizard__button--continue"
         onClick=${() => {
           setGoal({ ...goal, days });
         }}
@@ -89,7 +89,7 @@ function SetupScreenDays() {
         Next
       </button>
       <button
-        class="SetupScreen__button SetupScreen__button--back"
+        class="GoalWizard__button GoalWizard__button--back"
         onClick=${() => {
           setGoal({ ...goal, task: undefined });
         }}
@@ -99,14 +99,14 @@ function SetupScreenDays() {
     </div>`;
 }
 
-function SetupScreenOutcome({ variant }) {
+function GoalWizardOutcome({ variant }) {
   const [goal, setGoal] = useChromeStorage("goal", {});
   const [outcomeText, setOutcomeText] = useState("");
 
-  return html`<h1 class="SetupScreen__header">
+  return html`<h1 class="GoalWizard__header">
       Step ${variant === "good" ? "3" : "4"}: Consider the Possibilities
     </h1>
-    <div class="SetupScreen__text">
+    <div class="GoalWizard__text">
       What will your life be like if you consistently${" "}
       ${variant === "good"
         ? html`<span class="text-green">succeed</span>`
@@ -114,7 +114,7 @@ function SetupScreenOutcome({ variant }) {
       for a year?
       <textarea
         value=${outcomeText}
-        class=${`SetupScreen__textarea ${
+        class=${`GoalWizard__textarea ${
           variant === "good" ? "text-green" : "text-red"
         }`}
         onInput=${(event) => {
@@ -127,9 +127,9 @@ function SetupScreenOutcome({ variant }) {
         rows=${3}
       />
     </div>
-    <div class="SetupScreen__buttonContainer">
+    <div class="GoalWizard__buttonContainer">
       <button
-        class="SetupScreen__button SetupScreen__button--continue"
+        class="GoalWizard__button GoalWizard__button--continue"
         onClick=${() => {
           setGoal({
             ...goal,
@@ -142,7 +142,7 @@ function SetupScreenOutcome({ variant }) {
         Next
       </button>
       <button
-        class="SetupScreen__button SetupScreen__button--back"
+        class="GoalWizard__button GoalWizard__button--back"
         onClick=${() => {
           setGoal({
             ...goal,
@@ -155,7 +155,7 @@ function SetupScreenOutcome({ variant }) {
     </div>`;
 }
 
-function SetupScreenShare({ goal, close }) {
+function GoalWizardShare({ goal, close }) {
   const daysText = (num) => {
     if (num === 1) return "one day";
     if (num === 2) return "two days";
@@ -175,20 +175,20 @@ function SetupScreenShare({ goal, close }) {
     )} a week. Wish me luck!`
   );
 
-  return html`<h1 class="SetupScreen__header">Step 5: Public Accountability</h1>
-    <div class="SetupScreen__text">
+  return html`<h1 class="GoalWizard__header">Step 5: Public Accountability</h1>
+    <div class="GoalWizard__text">
       If you're serious about achieving your goal, commit to it publicly.
     </div>
-    <div class="SetupScreen__text SetupScreen__text--small">
+    <div class="GoalWizard__text GoalWizard__text--small">
       Share your goal on${" "}
       <a href=${twitterURL.href} target="_blank" rel="nofollow">Twitter</a> or
       write a post on${" "}
       <a href="https://facebook.com/" target="_blank" rel="nofollow">Facebook</a
       >.
     </div>
-    <div class="SetupScreen__buttonContainer">
+    <div class="GoalWizard__buttonContainer">
       <button
-        class="SetupScreen__button SetupScreen__button--continue"
+        class="GoalWizard__button GoalWizard__button--continue"
         onClick=${close}
       >
         Done

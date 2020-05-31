@@ -1,5 +1,5 @@
-import { html, useState, useEffect } from "../htm-preact.js";
-import { useChromeStorage } from "../hooks.js";
+import { html, useState, useEffect } from "../../htm-preact.js";
+import { useChromeStorage } from "../../hooks.js";
 
 export function UserMenu() {
   const [menuOpen, setMenuOpen] = useState(false);

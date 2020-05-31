@@ -1,4 +1,4 @@
-import { html, useState, useEffect } from "../htm-preact.js";
+import { html, useState, useEffect } from "../../htm-preact.js";
 
 export function SuccessScreen({ succeeded, undo }) {
   // Don't shake if you load the page and have already succeeded

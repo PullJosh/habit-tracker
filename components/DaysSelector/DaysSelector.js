@@ -1,4 +1,4 @@
-import { html } from "../htm-preact.js";
+import { html } from "../../htm-preact.js";
 
 export function DaysSelector({ days, setDays }) {
   const dayOptions = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];

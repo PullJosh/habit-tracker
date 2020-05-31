@@ -1,5 +1,5 @@
-import { html } from "../htm-preact.js";
-import { useChromeStorage } from "../hooks.js";
+import { html } from "../../htm-preact.js";
+import { useChromeStorage } from "../../hooks.js";
 
 export function StreakBanner({ type, days }) {
   const [goal, setGoal] = useChromeStorage("goal", {});

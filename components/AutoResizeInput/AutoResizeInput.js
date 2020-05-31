@@ -1,4 +1,4 @@
-import { html, useRef } from "../htm-preact.js";
+import { html, useRef } from "../../htm-preact.js";
 
 export function AutoResizeInput({ value, setValue, ...props }) {
   const containerRef = useRef();
